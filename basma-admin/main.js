@@ -3,7 +3,6 @@ import {
   collection,
   doc,
   setDoc,
-  getDoc,
   updateDoc,
   deleteDoc,
   serverTimestamp,
@@ -22,32 +21,15 @@ function showError(element, message) {
 if (document.getElementById('adminLoginForm')) {
   const form = document.getElementById('adminLoginForm');
   const errorEl = document.getElementById('adminError');
-  form.addEventListener('submit', async (e) => {
+  form.addEventListener('submit', (e) => {
     e.preventDefault();
     const username = document.getElementById('username').value.trim();
     const password = document.getElementById('adminPassword').value;
-    try {
-      const docRef = doc(db, 'admins', 'bootstrap');
-      const snap = await getDoc(docRef);
-      if (!snap.exists()) {
-        showError(errorEl, 'لا يوجد حساب مدير');
-        return;
-      }
-      const data = snap.data();
-      if (data.username !== username) {
-        showError(errorEl, 'المستخدم غير موجود');
-        return;
-      }
-      const ok = await bcrypt.compare(password, data.passwordHash);
-      if (!ok) {
-        showError(errorEl, 'كلمة المرور غير صحيحة');
-        return;
-      }
+    if (username === 'admin' && password === 'Admin@Doha') {
       localStorage.setItem('isAdmin', 'true');
       location.href = 'users.html';
-    } catch (err) {
-      showError(errorEl, 'حدث خطأ');
-      console.error(err);
+    } else {
+      showError(errorEl, 'بيانات الدخول غير صحيحة');
     }
   });
 }
@@ -64,6 +46,7 @@ if (document.getElementById('membersTable')) {
   requireAdmin();
   const tableBody = document.querySelector('#membersTable tbody');
   const addBtn = document.getElementById('addUser');
+  const attBtn = document.getElementById('goAttendance');
   const modal = document.getElementById('userModal');
   const cancelBtn = document.getElementById('cancelUser');
   const form = document.getElementById('userForm');
@@ -91,6 +74,9 @@ if (document.getElementById('membersTable')) {
   });
 
   addBtn.addEventListener('click', () => openModal(null, null));
+  attBtn.addEventListener('click', () => {
+    location.href = 'attendance.html';
+  });
 
   form.addEventListener('submit', async (e) => {
     e.preventDefault();
