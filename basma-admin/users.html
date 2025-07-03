@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>إدارة الأعضاء</title>
+  <link rel="stylesheet" href="styles.css">
+  <script type="module" src="../firebase-init.js"></script>
+</head>
+<body>
+  <div class="top-bar">
+    <h1>إدارة الأعضاء</h1>
+    <button id="logoutAdmin">تسجيل خروج</button>
+  </div>
+  <div class="controls">
+    <p class="hint">يمكنك إضافة عضو جديد أو تعديله أو حذفه من الجدول أدناه.</p>
+    <button id="addUser">إضافة عضو</button>
+    <button id="goAttendance">متابعة الحضور</button>
+  </div>
+  <table id="membersTable">
+    <thead>
+      <tr><th>الاسم</th><th>الهاتف</th><th>إجراءات</th></tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+
+  <div id="userModal" class="modal hidden">
+    <div class="modal-content">
+      <h2 id="modalTitle">عضو جديد</h2>
+      <form id="userForm">
+        <label>الاسم</label>
+        <input type="text" id="fullName" required>
+        <label>الهاتف</label>
+        <input type="text" id="userPhone" required>
+        <label>كلمة المرور</label>
+        <input type="password" id="userPassword" required>
+        <button type="submit" id="saveUser">حفظ</button>
+        <button type="button" id="cancelUser">إلغاء</button>
+      </form>
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bcryptjs/2.4.3/bcrypt.min.js"></script>
+  <script type="module" src="main.js"></script>
+</body>
+</html>
