@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>الحضور</title>
+  <link rel="stylesheet" href="styles.css">
+  <script type="module" src="../firebase-init.js"></script>
+</head>
+<body>
+  <div class="top-bar">
+    <h1>متابعة الحضور</h1>
+    <button id="backUsers">الأعضاء</button>
+  </div>
+  <div class="controls">
+    <input type="date" id="attDate">
+  </div>
+  <table id="attTable">
+    <thead>
+      <tr><th>الاسم</th><th>دخول</th><th>خروج</th></tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bcryptjs/2.4.3/bcrypt.min.js"></script>
+  <script type="module" src="main.js"></script>
+</body>
+</html>
